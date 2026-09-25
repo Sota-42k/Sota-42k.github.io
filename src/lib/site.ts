@@ -22,10 +22,10 @@ export const SITE = {
 export const AUTHOR_SELF = 'Fujii, S.';
 
 export const RESEARCH_INTERESTS = [
-  'Identifiability of diffusion models',
-  'Score-based generative modeling',
-  'Representation learning',
-  'Interpretable machine learning',
+  'Identifiability (nonlinear ICA)',
+  'Representation learning (identifiable representations)',
+  'Generative models (score-based diffusion models)',
+  'Explainable AI (identifiable machine learning)',
 ] as const;
 
 export const NAV_LINKS = [

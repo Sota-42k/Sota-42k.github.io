@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PublicationEntry from '../components/PublicationEntry.astro';
 import { SITE, RESEARCH_INTERESTS } from '../lib/site';
 import { sortPublications } from '../lib/publications';
+import portrait from '../assets/portrait-1.jpg';
 
 const featured = sortPublications(
   await getCollection('publications', ({ data }) => data.featured)
@@ -11,40 +13,86 @@ const featured = sortPublications(
 ---
 
 <BaseLayout>
-  <section>
-    <h1 class="font-serif text-4xl font-semibold tracking-tight text-ink">{SITE.name}</h1>
-    <p class="mt-2 text-lg text-ink-muted">{SITE.tagline}</p>
-
-    <div class="mt-6 space-y-4 leading-relaxed text-ink">
-      <p>
-        I am an undergraduate at {SITE.affiliation} studying Computer Science and Business
-        Analytics, and recently a visiting student at Jesus College, University of Oxford. My
-        research develops the theory of <strong class="font-medium">identifiability in
-        score-based generative models</strong> — what the forward noising process preserves, and
-        when latent structure can be provably recovered from learned scores.
-      </p>
-      <p>
-        I also work on applied machine learning: domain-adapted retrieval models, and
-        interpretable statistical modeling for population health. I am applying to PhD programs
-        in machine learning.
-      </p>
-    </div>
-
-    <div class="mt-8 flex flex-wrap gap-3">
+  <ul aria-label="Contact and resources" class="mb-8 flex flex-wrap gap-2">
+    <li>
+      <a
+        href={`mailto:${SITE.email}`}
+        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+      >
+        {SITE.email.replace('@', ' [at] ')}
+      </a>
+    </li>
+    <li>
+      <a
+        href={SITE.github}
+        rel="me noopener"
+        target="_blank"
+        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+      >
+        GitHub
+      </a>
+    </li>
+    <li>
+      <a
+        href={SITE.linkedin}
+        rel="me noopener"
+        target="_blank"
+        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+      >
+        LinkedIn
+      </a>
+    </li>
+    <li>
       <a
         href={SITE.cv}
         download
-        class="rounded-md border border-rule px-4 py-2 text-sm font-medium text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
       >
-        Download CV (PDF)
+        CV
       </a>
-      <a
-        href={`mailto:${SITE.email}`}
-        class="rounded-md px-4 py-2 text-sm font-medium text-ink-muted no-underline transition-colors hover:text-accent"
-      >
-        {SITE.email}
-      </a>
+    </li>
+  </ul>
+
+  <section>
+    <!-- Portrait sits beside the heading and bio on wide screens. `flex-col-reverse`
+         floats it above the name on narrow ones while keeping the <h1> first in the
+         DOM, so the page still announces the name before the image. -->
+    <div class="flex flex-col-reverse gap-8 sm:flex-row sm:items-start sm:gap-10">
+      <div class="flex-1">
+        <h1 class="font-serif text-4xl font-semibold tracking-tight text-ink">{SITE.name}</h1>
+        <p class="mt-2 text-lg text-ink-muted">{SITE.tagline}</p>
+
+        <div class="mt-6 space-y-4 leading-relaxed text-ink">
+          <p>
+            I am an undergraduate at {SITE.affiliation} studying Computer Science and Business
+            Analytics, and recently a visiting student at Jesus College, University of Oxford. My
+            research develops the theory of <strong class="font-medium">identifiability in
+            score-based generative models</strong> — what the forward noising process preserves,
+            and when latent structure can be provably recovered from learned scores.
+          </p>
+          <p>
+            I also work on applied machine learning: domain-adapted retrieval models, and
+            interpretable statistical modeling for population health. I am applying to PhD
+            programs in machine learning.
+          </p>
+        </div>
+      </div>
+
+      <Image
+        src={portrait}
+        alt={`Portrait of ${SITE.name}`}
+        widths={[176, 208, 352, 416]}
+        sizes="(min-width: 640px) 208px, 176px"
+        format="webp"
+        quality={82}
+        width={416}
+        height={575}
+        loading="eager"
+        fetchpriority="high"
+        class="w-44 shrink-0 self-start rounded-lg border border-rule object-cover sm:w-52"
+      />
     </div>
+
   </section>
 
   <section class="mt-14" aria-labelledby="interests">
@@ -68,6 +116,28 @@ const featured = sortPublications(
     </div>
     <div class="mt-4">
       {featured.map((entry) => <PublicationEntry entry={entry} />)}
+    </div>
+  </section>
+
+  <section class="mt-14" aria-labelledby="education">
+    <h2 id="education" class="font-serif text-2xl font-medium text-ink">Education</h2>
+    <div class="mt-4 divide-y divide-rule">
+      <article class="py-4 first:pt-0">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 class="font-medium text-ink">DePauw University</h3>
+          <p class="text-sm text-ink-muted">August 2023 – May 2027 (expected)</p>
+        </div>
+        <p class="mt-1 text-sm text-ink-muted">
+          B.A. in Computer Science and Business Analytics
+        </p>
+      </article>
+      <article class="py-4 last:pb-0">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 class="font-medium text-ink">University of Oxford, Jesus College</h3>
+          <p class="text-sm text-ink-muted">January – June 2026</p>
+        </div>
+        <p class="mt-1 text-sm text-ink-muted">Visiting student</p>
+      </article>
     </div>
   </section>
 </BaseLayout>
