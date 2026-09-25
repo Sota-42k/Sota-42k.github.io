@@ -13,46 +13,6 @@ const featured = sortPublications(
 ---
 
 <BaseLayout>
-  <ul aria-label="Contact and resources" class="mb-8 flex flex-wrap gap-2">
-    <li>
-      <a
-        href={`mailto:${SITE.email}`}
-        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-      >
-        {SITE.email.replace('@', ' [at] ')}
-      </a>
-    </li>
-    <li>
-      <a
-        href={SITE.github}
-        rel="me noopener"
-        target="_blank"
-        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-      >
-        GitHub
-      </a>
-    </li>
-    <li>
-      <a
-        href={SITE.linkedin}
-        rel="me noopener"
-        target="_blank"
-        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-      >
-        LinkedIn
-      </a>
-    </li>
-    <li>
-      <a
-        href={SITE.cv}
-        download
-        class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
-      >
-        CV
-      </a>
-    </li>
-  </ul>
-
   <section>
     <!-- Portrait sits beside the heading and bio on wide screens. `flex-col-reverse`
          floats it above the name on narrow ones while keeping the <h1> first in the
@@ -61,6 +21,46 @@ const featured = sortPublications(
       <div class="flex-1">
         <h1 class="font-serif text-4xl font-semibold tracking-tight text-ink">{SITE.name}</h1>
         <p class="mt-2 text-lg text-ink-muted">{SITE.tagline}</p>
+
+        <ul aria-label="Contact and resources" class="mt-5 flex flex-wrap gap-2">
+          <li>
+            <a
+              href={`mailto:${SITE.email}`}
+              class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+            >
+              {SITE.email.replace('@', ' [at] ')}
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.github}
+              rel="me noopener"
+              target="_blank"
+              class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+            >
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.linkedin}
+              rel="me noopener"
+              target="_blank"
+              class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.cv}
+              download
+              class="inline-flex rounded-md border border-rule px-3 py-1.5 text-sm text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+            >
+              CV
+            </a>
+          </li>
+        </ul>
 
         <div class="mt-6 space-y-4 leading-relaxed text-ink">
           <p>
