@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchEntry from '../components/ResearchEntry.astro';
+
+/** Reverse-chronological by start date. */
+const research = (await getCollection('research')).sort(
+  (a, b) => b.data.start.getTime() - a.data.start.getTime()
+);
+---
+
+<BaseLayout
+  title="Research"
+  description="Research projects by Sota Fujii spanning diffusion model identifiability, retrieval-augmented generation, and interpretable machine learning."
+>
+  <h1 class="font-serif text-3xl font-semibold tracking-tight text-ink">Research</h1>
+  <p class="mt-2 text-ink-muted">Projects and research positions, newest first.</p>
+
+  <div class="mt-8">
+    {research.map((entry) => <ResearchEntry entry={entry} />)}
+  </div>
+</BaseLayout>

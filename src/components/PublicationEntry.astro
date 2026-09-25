@@ -1,0 +1,86 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { AUTHOR_SELF } from '../lib/site';
+
+interface Props {
+  entry: CollectionEntry<'publications'>;
+  /** Render the entry body (abstract). Off for compact lists like the home page. */
+  showAbstract?: boolean;
+}
+
+const { entry, showAbstract = false } = Astro.props;
+const { title, authors, year, venue, status, links } = entry.data;
+
+const STATUS_LABEL: Record<typeof status, string> = {
+  'peer-reviewed': 'Peer-reviewed',
+  'under-review': 'Under review',
+  preprint: 'Preprint',
+};
+
+/**
+ * Separator that follows the author at `index`, using the academic serial comma:
+ * "A", "A & B", "A, B, & C".
+ */
+function separatorAfter(index: number, total: number): string {
+  if (index === total - 1) return '';
+  if (index === total - 2) return total === 2 ? ' & ' : ', & ';
+  return ', ';
+}
+
+const LINK_LABEL: Record<string, string> = {
+  pdf: 'PDF',
+  arxiv: 'arXiv',
+  doi: 'DOI',
+  code: 'Code',
+};
+const linkEntries = Object.entries(links ?? {}) as [string, string][];
+
+const { Content } = await render(entry);
+---
+
+<article class="border-b border-rule py-6 first:pt-0 last:border-b-0">
+  <p class="text-sm text-ink-muted">
+    {
+      authors.map((name, i) => (
+        <>
+          {name === AUTHOR_SELF ? <strong class="font-semibold text-ink">{name}</strong> : name}
+          {separatorAfter(i, authors.length)}
+        </>
+      ))
+    }
+    {' '}({year}).
+  </p>
+
+  <h3 class="mt-1 font-serif text-lg leading-snug font-medium text-ink">{title}</h3>
+
+  <p class="mt-1 text-sm text-ink-muted">
+    <em>{venue}</em>.
+    <span
+      class="ml-1 inline-block rounded-full border border-rule px-2 py-0.5 text-xs whitespace-nowrap"
+    >
+      {STATUS_LABEL[status]}
+    </span>
+  </p>
+
+  {
+    showAbstract && (
+      <div class="mt-3 text-sm leading-relaxed text-ink-muted">
+        <Content />
+      </div>
+    )
+  }
+
+  {
+    linkEntries.length > 0 && (
+      <ul class="mt-2 flex flex-wrap gap-3 text-sm">
+        {linkEntries.map(([key, href]) => (
+          <li>
+            <a href={href} rel="noopener" target="_blank" class="text-accent hover:underline">
+              {LINK_LABEL[key] ?? key}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>

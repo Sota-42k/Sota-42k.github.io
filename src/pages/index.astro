@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationEntry from '../components/PublicationEntry.astro';
+import { SITE, RESEARCH_INTERESTS } from '../lib/site';
+import { sortPublications } from '../lib/publications';
+
+const featured = sortPublications(
+  await getCollection('publications', ({ data }) => data.featured)
+);
+---
+
+<BaseLayout>
+  <section>
+    <h1 class="font-serif text-4xl font-semibold tracking-tight text-ink">{SITE.name}</h1>
+    <p class="mt-2 text-lg text-ink-muted">{SITE.tagline}</p>
+
+    <div class="mt-6 space-y-4 leading-relaxed text-ink">
+      <p>
+        I am an undergraduate at {SITE.affiliation} studying Computer Science and Business
+        Analytics, and recently a visiting student at Jesus College, University of Oxford. My
+        research develops the theory of <strong class="font-medium">identifiability in
+        score-based generative models</strong> — what the forward noising process preserves, and
+        when latent structure can be provably recovered from learned scores.
+      </p>
+      <p>
+        I also work on applied machine learning: domain-adapted retrieval models, and
+        interpretable statistical modeling for population health. I am applying to PhD programs
+        in machine learning.
+      </p>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href={SITE.cv}
+        download
+        class="rounded-md border border-rule px-4 py-2 text-sm font-medium text-ink no-underline transition-colors hover:border-accent hover:text-accent"
+      >
+        Download CV (PDF)
+      </a>
+      <a
+        href={`mailto:${SITE.email}`}
+        class="rounded-md px-4 py-2 text-sm font-medium text-ink-muted no-underline transition-colors hover:text-accent"
+      >
+        {SITE.email}
+      </a>
+    </div>
+  </section>
+
+  <section class="mt-14" aria-labelledby="interests">
+    <h2 id="interests" class="font-serif text-2xl font-medium text-ink">Research interests</h2>
+    <ul class="mt-4 space-y-2 text-ink-muted">
+      {
+        RESEARCH_INTERESTS.map((interest) => (
+          <li class="flex gap-2">
+            <span aria-hidden="true" class="text-rule">—</span>
+            <span>{interest}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-14" aria-labelledby="selected">
+    <div class="flex items-baseline justify-between gap-4">
+      <h2 id="selected" class="font-serif text-2xl font-medium text-ink">Selected publications</h2>
+      <a href="/publications" class="text-sm text-accent hover:underline">All publications →</a>
+    </div>
+    <div class="mt-4">
+      {featured.map((entry) => <PublicationEntry entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>

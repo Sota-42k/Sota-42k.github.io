@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* Design tokens. Academic convention over flourish: a serif display face for
+   headings, a readable measure, and generous vertical rhythm.
+
+   Note: `@theme` cannot be nested inside a media query — Tailwind hoists it and
+   the query is lost. Light values are declared here; the dark scheme overrides
+   the emitted custom properties on :root below. */
+@theme {
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --color-ink: oklch(0.22 0.01 260);
+  --color-ink-muted: oklch(0.52 0.01 260);
+  --color-paper: oklch(0.99 0.002 260);
+  --color-rule: oklch(0.90 0.005 260);
+  --color-accent: oklch(0.48 0.13 255);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: oklch(0.92 0.008 260);
+    --color-ink-muted: oklch(0.68 0.012 260);
+    --color-paper: oklch(0.18 0.008 260);
+    --color-rule: oklch(0.32 0.010 260);
+    --color-accent: oklch(0.76 0.11 255);
+  }
+}
+
+html {
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible focus for keyboard navigation. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
