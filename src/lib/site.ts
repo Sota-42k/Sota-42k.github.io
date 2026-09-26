@@ -30,6 +30,25 @@ export const RESEARCH_INTERESTS = [
   'Explainable AI (identifiable machine learning and optimization)',
 ] as const;
 
+export type EducationEntry = {
+  university: string;
+  period: string;
+  status: string;
+};
+
+export const EDUCATION = [
+  {
+    university: 'DePauw University',
+    period: 'August 2023 – May 2027 (expected)',
+    status: 'B.A. in Computer Science and Business Analytics',
+  },
+  {
+    university: 'University of Oxford, Jesus College',
+    period: 'January – June 2026',
+    status: 'Visiting student',
+  },
+] as const satisfies readonly EducationEntry[];
+
 export const NAV_LINKS = [
   { href: '/', label: 'About' },
   { href: '/research', label: 'Research' },

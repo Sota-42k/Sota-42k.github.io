@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PublicationEntry from '../components/PublicationEntry.astro';
 import ContactIcon from '../components/ContactIcon.astro';
-import { SITE, RESEARCH_INTERESTS } from '../lib/site';
+import { EDUCATION, SITE, RESEARCH_INTERESTS } from '../lib/site';
 import { sortPublications } from '../lib/publications';
 import portrait from '../assets/portrait-1.jpg';
 
@@ -143,22 +143,17 @@ const featured = sortPublications(
   <section class="mt-14" aria-labelledby="education">
     <h2 id="education" class="font-serif text-2xl font-medium text-ink">Education</h2>
     <div class="mt-4 divide-y divide-rule">
-      <article class="py-4 first:pt-0">
-        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h3 class="font-medium text-ink">DePauw University</h3>
-          <p class="text-sm text-ink-muted">August 2023 – May 2027 (expected)</p>
-        </div>
-        <p class="mt-1 text-sm text-ink-muted">
-          B.A. in Computer Science and Business Analytics
-        </p>
-      </article>
-      <article class="py-4 last:pb-0">
-        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h3 class="font-medium text-ink">University of Oxford, Jesus College</h3>
-          <p class="text-sm text-ink-muted">January – June 2026</p>
-        </div>
-        <p class="mt-1 text-sm text-ink-muted">Visiting student</p>
-      </article>
+      {
+        EDUCATION.map(({ university, period, status }) => (
+          <article class="py-4 first:pt-0 last:pb-0">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="font-medium text-ink">{university}</h3>
+              <p class="text-sm text-ink-muted">{period}</p>
+            </div>
+            <p class="mt-1 text-sm text-ink-muted">{status}</p>
+          </article>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
