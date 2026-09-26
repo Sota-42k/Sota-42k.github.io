@@ -11,6 +11,8 @@ export const SITE = {
   email: 'sotafujii_2027@depauw.edu',
   github: 'https://github.com/Sota-42k',
   linkedin: 'https://www.linkedin.com/in/sota-fujii-7b4177295/',
+  orcid: 'https://orcid.org/0009-0003-6658-1207',
+  researchGate: 'https://www.researchgate.net/profile/Sota-Fujii-3',
   cv: '/cv/Sota_Fujii_CV.pdf',
   affiliation: 'DePauw University',
 } as const;
