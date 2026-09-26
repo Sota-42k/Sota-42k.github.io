@@ -6,7 +6,7 @@ advisor: "Prof. Yanchao Yang"
 start: 2025-05-01
 end: 2025-09-30
 summary: "Studied C-section delivery, low birthweight, and prematurity across Hispanic-origin groups using 2011–2021 United States birth records."
-tags: ["Interpretable ML", "Biostatistics", "Logistic Regression", "Public Health"]
+tags: ["Interpretable ML", "Logistic Regression", "Decision-Tree", "Public Health"]
 featured: true
 ---
 

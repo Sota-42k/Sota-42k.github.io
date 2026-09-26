@@ -5,7 +5,7 @@ role: "ML Research Engineer Intern"
 start: 2026-06-01
 end: 2026-08-31
 summary: "Fine-tuned an open-weight embedding model for a specialized retrieval-augmented generation pipeline, beating the SOTA baseline by over 20%."
-tags: ["Retrieval-Augmented Generation", "Embeddings", "LoRA", "Distillation"]
+tags: ["Representation Learning", "LoRA", "Distillation", "PPO"]
 featured: true
 ---
 

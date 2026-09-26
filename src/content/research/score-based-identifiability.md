@@ -5,7 +5,7 @@ role: "Undergraduate Researcher"
 advisor: "Prof. Brian Howard"
 start: 2026-08-01
 summary: "Developing an identifiability theory for diffusion models and an explicit recovery map from conditional score contrasts."
-tags: ["Diffusion Models", "Identifiability", "Representation Learning", "Theory"]
+tags: ["Identifiability", "Nonlinear ICA", "Generative Models", "Diffusion Models"]
 featured: true
 ---
 
