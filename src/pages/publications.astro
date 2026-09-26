@@ -12,7 +12,6 @@ const publications = sortPublications(await getCollection('publications'));
   description="Publications and manuscripts by Sota Fujii on diffusion model identifiability and applied machine learning."
 >
   <h1 class="font-serif text-3xl font-semibold tracking-tight text-ink">Publications</h1>
-  <p class="mt-2 text-ink-muted">Bold author denotes me. Listed newest first.</p>
 
   <div class="mt-8">
     {publications.map((entry) => <PublicationEntry entry={entry} showAbstract />)}
