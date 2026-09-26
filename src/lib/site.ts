@@ -25,7 +25,7 @@ export const RESEARCH_INTERESTS = [
   'Identifiability (nonlinear ICA)',
   'Representation learning (identifiable representations)',
   'Generative models (score-based diffusion models)',
-  'Explainable AI (identifiable machine learning)',
+  'Explainable AI (identifiable machine learning and optimization)',
 ] as const;
 
 export const NAV_LINKS = [
