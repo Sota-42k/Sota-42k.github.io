@@ -12,7 +12,6 @@ const { entry, showAbstract = false } = Astro.props;
 const { title, authors, year, venue, status, links } = entry.data;
 
 const STATUS_LABEL: Record<typeof status, string> = {
-  accepted: 'Accepted',
   'peer-reviewed': 'Peer-reviewed',
   'under-review': 'Under review',
   preprint: 'Preprint',
