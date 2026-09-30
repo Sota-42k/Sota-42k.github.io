@@ -10,7 +10,7 @@ const publications = defineCollection({
     authors: z.array(z.string()).nonempty(),
     year: z.number().int(),
     venue: z.string(),
-    status: z.enum(['peer-reviewed', 'under-review', 'preprint']),
+    status: z.enum(['accepted', 'peer-reviewed', 'under-review', 'preprint']),
     links: z
       .object({
         pdf: z.url().optional(),

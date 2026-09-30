@@ -1,9 +1,9 @@
 ---
-title: "A Conservation Law for Identifiability in Diffusion Models: Noising Creates Nothing, Destroys Nothing"
+title: "Noising Creates Nothing, Destroys Nothing: On the Identifiability of Conditional Diffusion Models"
 authors: ["Fujii, S."]
 year: 2026
 venue: "AI for Stochastic Dynamics Workshop at NeurIPS 2026"
-status: "under-review"
+status: "accepted"
 order: 1
 featured: true
 ---
