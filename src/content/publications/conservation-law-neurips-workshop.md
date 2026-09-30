@@ -3,7 +3,7 @@ title: "Noising Creates Nothing, Destroys Nothing: On the Identifiability of Con
 authors: ["Fujii, S."]
 year: 2026
 venue: "AI for Stochastic Dynamics Workshop at NeurIPS 2026"
-status: "accepted"
+status: "peer-reviewed"
 order: 1
 featured: true
 ---
